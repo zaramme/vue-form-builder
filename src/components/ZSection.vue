@@ -1,10 +1,20 @@
 <template>
-<el-input v-model="msg"></el-input>
+<div class="zsection">
+<h3>{{value.title}}</h3>
+<z-form-container v-model="value.items" name="foo"></z-form-container>
+</div>
 </template>
 
 <script>
+import ZFormContainer from './ZFormContainer'
+
 export default {
-  name: 'ZForm',
+  name: 'ZSection',
+  props:['value'],
+  components:{
+    // to avoid curculer refellence, import dinamicly
+    ZFormContainer: () => import('./ZFormContainer')
+  },
   data () {
     return {
       msg: ''

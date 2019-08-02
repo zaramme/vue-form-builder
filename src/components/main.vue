@@ -1,5 +1,5 @@
 <template>
-  <z-form v-model="msg"></z-form>
+  <z-form v-model="value"></z-form>
 </template>
 
 <script>
@@ -8,7 +8,7 @@ export default {
   name: 'Main',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      value: this.$store.state.default
     }
   },
   components:{

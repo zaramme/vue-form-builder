@@ -1,12 +1,17 @@
 <template>
-<el-input v-model="msg"></el-input>
-</template>
+<div class="zpage">
+<h4>{{value.title}}</h4>
+</div></template>
 
 <script>
 export default {
-  name: 'ZForm',
+  name: 'ZQuestion',
+  props:[
+    'value'
+  ],
   data () {
     return {
+      value:{},
       msg: ''
     }
   }

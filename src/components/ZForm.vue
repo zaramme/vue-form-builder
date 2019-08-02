@@ -1,20 +1,17 @@
 <template>
-<el-input v-model="vtest"></el-input>
+<div class="zform">
+  <div>{{value.uuid}}</div>
+  <z-form-container v-model="value.items"></z-form-container>
+</div>
 </template>
 
 <script>
+import ZFormContainer from './ZFormContainer'
+
 export default {
   name: 'ZForm',
-  data () {
-    return {
-      msg: ''
-    }
-  },
-  computed:{
-    vtest (){
-      return this.$store.state.test
-    }
-  }
+  props: ['value'],
+  components:{ZFormContainer}
 }
 </script>
 

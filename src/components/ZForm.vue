@@ -1,6 +1,5 @@
 <template>
 <div class="zform">
-  <div>{{value.uuid}}</div>
   <z-form-container v-model="value.items"></z-form-container>
 </div>
 </template>

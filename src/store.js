@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-console.log('this is store')
 export default new Vuex.Store({
   state: {
-    test: 'this is test statement for vuex',
     default:{
         "uuid": "ed0906ee-482b-41dd-bcb0-ab17608d084e",
         "type": "form",

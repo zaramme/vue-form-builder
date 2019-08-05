@@ -26,6 +26,9 @@
           <el-dropdown-item command="question">Add new question inside this page</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
+      <el-button icon="el-icon-arrow-up" @click="moveRowUpward" type="warning"　circle></el-button>
+      <el-button icon="el-icon-arrow-down" @click="moveRowDownward" type="warning" circle></el-button>
+      <el-button icon="el-icon-delete" type="danger" @click="deleteSelf" circle></el-button>
     </div>
   </template>
   </div>

@@ -6,6 +6,8 @@
     v-model="value[index]" 
     :key="entity.uuid"
     @add="addSiblingRow"
+    @delete="deleteSiblingRow"
+    @swap="swapSiblingRow"
     :index-of-raw="index"
   ></component>
 </template>

@@ -31,9 +31,13 @@
 }
 
 .editbox {
-    width:100px;
+    display: flex;
+    align-items: center;
+    width:200px;
 }
-
+.editbox .el-button+.el-button {
+    margin-left: 0px;
+}
 .page h2 {
     margin:0;
     font-size: 17px;  

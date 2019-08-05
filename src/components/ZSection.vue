@@ -23,6 +23,9 @@
             <el-dropdown-item command="section">Add new section inside</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
+        <el-button icon="el-icon-arrow-up" @click="moveRowUpward" circle></el-button>
+        <el-button icon="el-icon-arrow-down" @click="moveRowDownward" circle></el-button>
+        <el-button icon="el-icon-delete" @click="deleteSelf" circle></el-button>
       </div>
     </template>
   </div>

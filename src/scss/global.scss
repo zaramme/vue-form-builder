@@ -3,6 +3,7 @@
     max-width:780px;
     margin: 10px auto;
 }
+
 .page-container{
     border:solid 1px #AAAAAA;
     border-radius: 5px;
@@ -19,7 +20,8 @@
 .row {
     display: flex;
     align-items: center;
-    margin: 20px 10px;
+    margin: 0px 8px;
+    padding: 8px 10px 5px 8px;
 }
 .attribute {
     width:200px;
@@ -35,6 +37,12 @@
     align-items: center;
     width:200px;
 }
+
+.page .editbox {
+    margin-right:6px
+}
+
+/* init ElementUI button margin style */
 .editbox .el-button+.el-button {
     margin-left: 0px;
 }
@@ -45,13 +53,16 @@
 
 .section h3 {
     margin:0;
+    font-weight: 800;
+    font-size: 15px;  
 }
 
 .question h4{
     margin:0;
     font-weight: 100;
+    font-size: 15px;  
 }
 
 i {
-    margin-right:10px;
+    margin-right:8px;
 }

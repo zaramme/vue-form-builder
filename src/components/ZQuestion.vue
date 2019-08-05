@@ -1,11 +1,7 @@
 <template>
 <div class="row question">
   <template v-if="isEditing">
-    <el-row>
-    <el-col>
     <el-input v-model="editing_data.title"></el-input>
-    </el-col>
-    </el-row>
   </template>
   <template v-else>
     <i class="el-icon-question"></i>

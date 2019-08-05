@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="row section">
-    <template v-if="is_editing">
+    <template v-if="isEditing">
       <h3>
         <el-input v-model="editing_data.title"></el-input>
       </h3>
@@ -12,21 +12,24 @@
       </div>
     </template>
     <template v-else>
+      <i class="el-icon-postcard"></i>
       <h3>{{value.title}}</h3>
       <div class="attribute"></div>
-      <div class="editbox">
-        <el-button icon="el-icon-edit" @click="edit" circle></el-button>
-        <el-dropdown @command="addNewRow">
-          <el-button icon="el-icon-plus" circle></el-button>
-          <el-dropdown-menu>
-            <el-dropdown-item command="question">Add new question</el-dropdown-item>
-            <el-dropdown-item command="section">Add new section inside</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <el-button icon="el-icon-arrow-up" @click="moveRowUpward" circle></el-button>
-        <el-button icon="el-icon-arrow-down" @click="moveRowDownward" circle></el-button>
-        <el-button icon="el-icon-delete" @click="deleteSelf" circle></el-button>
-      </div>
+      <z-row-editor
+        :is-editing="isEditing"
+        @save="save"
+        @cancelEdit="cancelEdit"
+        @edit="edit"
+        @addNewRow="addNewRow"
+        @moveRowUpward="moveRowUpward"
+        @moveRowDownward="moveRowDownward"
+        @deleteSelf="deleteSelf"
+      >
+        <template v-slot:add-dropdown>  
+          <el-dropdown-item command="question">Add new question</el-dropdown-item>
+          <el-dropdown-item command="section">Add new section inside</el-dropdown-item>
+        </template>
+      </z-row-editor>
     </template>
   </div>
   <div class="section-container">
@@ -37,6 +40,7 @@
 
 <script>
 import ZFormContainer from './ZFormContainer'
+import ZRowEditor from './ZRowEditor'
 import EditableMixin from '@/mixins/EditableMixin'
 import AddableMixin from '@/mixins/AddableMixin'
 
@@ -46,14 +50,15 @@ export default {
     EditableMixin,
     AddableMixin
   ],
+  components:{
+    ZRowEditor,
+    // to avoid curculer refellence, import dinamicly
+    ZFormContainer: () => import('./ZFormContainer')
+  },
   props:[
     'value',
     'indexOfRaw'
   ],
-  components:{
-    // to avoid curculer refellence, import dinamicly
-    ZFormContainer: () => import('./ZFormContainer')
-  },
   data () {
     return {
       addable:['section', 'question']

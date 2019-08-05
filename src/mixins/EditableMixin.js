@@ -24,7 +24,7 @@ export default {
     },
   },
   computed:{
-    is_editing(){
+    isEditing(){
       return this.editing_data != null
     }
   },

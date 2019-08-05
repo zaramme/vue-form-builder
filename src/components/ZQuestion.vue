@@ -1,6 +1,6 @@
 <template>
 <div class="row question">
-  <template v-if="is_editing">
+  <template v-if="isEditing">
     <el-row>
     <el-col>
     <el-input v-model="editing_data.title"></el-input>
@@ -13,37 +13,35 @@
   </template>
   <div class="attribute">
     <el-select 
-      v-if="is_editing" v-model="editing_data.response_type"
+      v-if="isEditing" v-model="editing_data.response_type"
     >
       <el-option value="number" label="Number" :key="0"> </el-option>
       <el-option value="text" label="Text" :key="1"></el-option>
     </el-select>
     <el-tag v-else>{{value.response_type}}</el-tag>
   </div>
-  <div class="editbox">
-    <template v-if="is_editing">
-      <el-button icon="el-icon-check" circle @click="save"></el-button>
-      <el-button icon="el-icon-close" circle @click="cancelEdit"></el-button>
+  <z-row-editor
+    :is-editing="isEditing"
+    @save="save"
+    @cancelEdit="cancelEdit"
+    @edit="edit"
+    @addNewRow="addNewRow"
+    @moveRowUpward="moveRowUpward"
+    @moveRowDownward="moveRowDownward"
+    @deleteSelf="deleteSelf"
+  >
+    <template v-slot:add-dropdown>  
+      <el-dropdown-item command="question">Add new question</el-dropdown-item>
     </template>
-    <template v-else>
-      <el-button icon="el-icon-edit" circle @click="edit"></el-button>
-      <el-dropdown @command="addNewRow">
-        <el-button icon="el-icon-plus" circle></el-button>
-        <el-dropdown-menu>
-          <el-dropdown-item command="question">Add new question</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-      <el-button icon="el-icon-arrow-up" @click="moveRowUpward" circle></el-button>
-      <el-button icon="el-icon-arrow-down" @click="moveRowDownward" circle></el-button>
-      <el-button icon="el-icon-delete" @click="deleteSelf" circle></el-button>
-    </template>
-  </div>
+  </z-row-editor>
+
 </div>
 </template>
 
 <script>
 import EditableMixin from '@/mixins/EditableMixin'
 import AddableMixin from '@/mixins/AddableMixin'
+import ZRowEditor from './ZRowEditor'
 
 export default {
   name: 'ZQuestion',
@@ -51,6 +49,9 @@ export default {
     EditableMixin,
     AddableMixin
   ],
+  components:{
+    ZRowEditor
+  },
   props:[
     'value',
     'indexOfRaw'

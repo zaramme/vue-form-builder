@@ -16,7 +16,8 @@ export default {
             {
             "type": "question",
             "title": "What is your name?",
-            "uuid": "2bb55331-9324-40cb-8205-b382c757cf15"
+            "uuid": "2bb55331-9324-40cb-8205-b382c757cf15",
+            "response_type": "text"
             },
             {
             "type": "section",

@@ -11,7 +11,7 @@
       <i class="el-icon-notebook-1"></i>
       <h2>{{value.title}}</h2>
     </template>
-    <div class="attribute"></div>
+    <div class="attribute empty"></div>
     <z-row-editor
       :is-editing="isEditing"
       @save="save"
@@ -22,10 +22,10 @@
       @moveRowDownward="moveRowDownward"
       @deleteSelf="deleteSelf"
     >
-      <template v-slot:add-dropdown>  
-        <el-dropdown-item command="page">Add new page</el-dropdown-item>
-        <el-dropdown-item command="section">Add new section inside this page</el-dropdown-item>
-        <el-dropdown-item command="question">Add new question inside this page</el-dropdown-item>
+      <template v-slot:add-dropdown>
+        <el-dropdown-item icon="el-icon-notebook-1" command="page">Add Page</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-postcard" command="section">Add Section inside this page</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-question" command="question">Add Question inside this page</el-dropdown-item>
       </template>
     </z-row-editor>
   </div>

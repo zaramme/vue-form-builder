@@ -24,8 +24,12 @@
     padding: 8px 10px 5px 8px;
 }
 .attribute {
-    width:200px;
+    width:150px;
     margin-left:auto;
+    text-align:center;
+}
+.attribute.empty{
+    width:0
 }
 .attribute .el-tag{
     width:65px;
@@ -47,17 +51,20 @@
     margin-left: 0px;
 }
 .page h2 {
+    width:80%;
     margin:0;
     font-size: 17px;  
 }
 
 .section h3 {
+    width:80%;
     margin:0;
     font-weight: 800;
     font-size: 15px;  
 }
 
 .question h4{
+    width:60%;
     margin:0;
     font-weight: 100;
     font-size: 15px;  

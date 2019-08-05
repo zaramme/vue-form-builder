@@ -1,7 +1,10 @@
 <template>
 <div class="row question">
   <template v-if="isEditing">
-    <el-input v-model="editing_data.title"></el-input>
+    <i class="el-icon-question"></i>
+    <h4>
+      <el-input v-model="editing_data.title"></el-input>
+    </h4>
   </template>
   <template v-else>
     <i class="el-icon-question"></i>
@@ -14,7 +17,7 @@
       <el-option value="number" label="Number" :key="0"> </el-option>
       <el-option value="text" label="Text" :key="1"></el-option>
     </el-select>
-    <el-tag v-else>{{value.response_type}}</el-tag>
+    <el-tag v-else :type="tagType">{{value.response_type}}</el-tag>
   </div>
   <z-row-editor
     :is-editing="isEditing"
@@ -27,7 +30,7 @@
     @deleteSelf="deleteSelf"
   >
     <template v-slot:add-dropdown>  
-      <el-dropdown-item command="question">Add new question</el-dropdown-item>
+      <el-dropdown-item icon="el-icon-question" command="question">Add Question</el-dropdown-item>
     </template>
   </z-row-editor>
 
@@ -69,6 +72,19 @@ export default {
         },
         this.indexOfRaw
       )
+    }
+  },
+  computed:{
+    tagType(){
+      if(this.value.response_type === 'text'){
+        return 'primary'
+
+      }
+      if(this.value.response_type === 'number'){
+        return 'warning'
+
+      }
+      return 'normal'
     }
   }
 }

@@ -11,7 +11,7 @@
       <i class="el-icon-postcard"></i>
       <h3>{{value.title}}</h3>
     </template>
-    <div class="attribute"></div>
+    <div class="attribute empty"></div>
     <z-row-editor
       :is-editing="isEditing"
       @save="save"
@@ -23,8 +23,8 @@
       @deleteSelf="deleteSelf"
     >
       <template v-slot:add-dropdown>  
-        <el-dropdown-item command="question">Add new question</el-dropdown-item>
-        <el-dropdown-item command="section">Add new section inside</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-question" command="question">Add Question inside this section</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-postcard" command="section">Add Section inside this section</el-dropdown-item>
       </template>
     </z-row-editor>
   </div>

@@ -1,10 +1,10 @@
 <template>
-<el-row class="zpage">
-  <el-col :span=6>
+<div class="row question">
+  <div>
     <el-input v-if="is_editing" v-model="editing_data.title"></el-input>
     <h4 v-else>{{value.title}}</h4>
-  </el-col>
-  <el-col :span=12>
+  </div>
+  <div class="attribute">
     <el-select 
       v-if="is_editing" v-model="editing_data.response_type"
     >
@@ -12,15 +12,15 @@
       <el-option value="text" label="Text" :key="1"></el-option>
     </el-select>
     <el-tag v-else>{{value.response_type}}</el-tag>
-  </el-col>
-  <el-col :span=2>
+  </div>
+  <div class="editbox">
     <template v-if="is_editing">
       <el-button icon="el-icon-check" circle @click="save"></el-button>
       <el-button icon="el-icon-close" circle @click="cancelEdit"></el-button>
     </template>
     <el-button v-else icon="el-icon-edit" circle @click="edit"></el-button>
-  </el-col>
-</el-row>
+  </div>
+</div>
 </template>
 
 <script>
@@ -45,4 +45,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+@import "../scss/global.scss";
+</style>

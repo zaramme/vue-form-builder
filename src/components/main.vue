@@ -8,30 +8,16 @@ export default {
   name: 'Main',
   data () {
     return {
+      // this is borderline between store based data-binding and v-model based data-binding.
+      // below this, 'value' will be updated by v-model mechanism reactively and you should update store data by manually on this component.
       value: this.$store.state.default
     }
   },
   components:{
     ZForm
   }
-
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+<style scoped></style>

@@ -1,17 +1,23 @@
 <template>
-<div class="zsection">
-  <div class="raw">
+<div class="section-container">
+  <div class="row section">
     <template v-if="is_editing">
-      <el-input v-model="editing_data.title"></el-input>
-      <el-button icon="el-icon-check" circle @click="save"></el-button>
-      <el-button icon="el-icon-close" circle @click="cancelEdit"></el-button>
+      <h3>
+        <el-input v-model="editing_data.title"></el-input>
+      </h3>
+      <div class="editbox">
+        <el-button icon="el-icon-check" circle @click="save"></el-button>
+        <el-button icon="el-icon-close" circle @click="cancelEdit"></el-button>
+      </div>
     </template>
     <template v-else>
       <h3>{{value.title}}</h3>
-      <el-button icon="el-icon-edit" @click="edit" circle></el-button>
+      <div class="editbox">
+        <el-button icon="el-icon-edit" @click="edit" circle></el-button>
+      </div>
     </template>
   </div>
-<z-form-container v-model="value.items" name="foo" :addable="addable"></z-form-container>
+  <z-form-container v-model="value.items" name="foo" :addable="addable"></z-form-container>
 </div>
 </template>
 
@@ -36,4 +42,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+@import "../scss/global.scss";
+</style>

@@ -1,7 +1,7 @@
 <template>
 <div>
 <template v-for="(entity,index) in value">
-  <component :is="getComponentNameFrom(entity.type)" v-model="value[index]"></component>
+  <component :is="getComponentNameFrom(entity.type)" v-model="value[index]" :key="entity.uuid"></component>
 </template>
 </div>
 </template>
@@ -10,9 +10,11 @@
 import ZPage from './ZPage'
 import ZSection from './ZSection'
 import ZQuestion from './ZQuestion'
+import UuidGeneratableMixin from '@/mixins/UuidGeneratableMixin'
 
 export default {
   name: 'ZFormContainer',
+  mixins: [UuidGeneratableMixin],
   components:{ZPage, ZSection, ZQuestion},
   props: ['value'],
   methods:{

@@ -1,10 +1,11 @@
 <template>
-<div class="section-container">
+<div>
   <div class="row section">
     <template v-if="is_editing">
       <h3>
         <el-input v-model="editing_data.title"></el-input>
       </h3>
+      <div class="attribute"></div>
       <div class="editbox">
         <el-button icon="el-icon-check" circle @click="save"></el-button>
         <el-button icon="el-icon-close" circle @click="cancelEdit"></el-button>
@@ -12,6 +13,7 @@
     </template>
     <template v-else>
       <h3>{{value.title}}</h3>
+      <div class="attribute"></div>
       <div class="editbox">
         <el-button icon="el-icon-edit" @click="edit" circle></el-button>
         <el-dropdown @command="addNewRow">
@@ -24,7 +26,9 @@
       </div>
     </template>
   </div>
-  <z-form-container v-model="value.items" name="foo" :addable="addable"></z-form-container>
+  <div class="section-container">
+    <z-form-container v-model="value.items" name="foo" :addable="addable"></z-form-container>
+  </div>
 </div>
 </template>
 

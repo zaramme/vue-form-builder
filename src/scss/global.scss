@@ -3,24 +3,51 @@
     max-width:780px;
     margin: 10px auto;
 }
+.page-container{
+    border:solid 1px #AAAAAA;
+    border-radius: 5px;
+    margin: 5px;
+}
 .section-container{
     margin-left:30px;
 }
+
+.page-container .row:not(:last-child){
+    border-bottom: dotted 1px #999999;
+}
+
 .row {
     display: flex;
     align-items: center;
-    margin: 8px 10px;
-    border-bottom: dotted 1px black;
+    margin: 20px 10px;
 }
 .attribute {
-    width:100px;
+    width:200px;
     margin-left:auto;
 }
+.attribute .el-tag{
+    width:65px;
+    text-align:center;
+}
+
 .editbox {
     width:100px;
-    margin-left:auto;
 }
 
 .page h2 {
+    margin:0;
     font-size: 17px;  
+}
+
+.section h3 {
+    margin:0;
+}
+
+.question h4{
+    margin:0;
+    font-weight: 100;
+}
+
+i {
+    margin-right:10px;
 }

@@ -1,9 +1,16 @@
 <template>
 <div class="row question">
-  <div>
-    <el-input v-if="is_editing" v-model="editing_data.title"></el-input>
-    <h4 v-else>{{value.title}}</h4>
-  </div>
+  <template v-if="is_editing">
+    <el-row>
+    <el-col>
+    <el-input v-model="editing_data.title"></el-input>
+    </el-col>
+    </el-row>
+  </template>
+  <template v-else>
+    <i class="el-icon-question"></i>
+    <h4>{{value.title}}</h4>
+  </template>
   <div class="attribute">
     <el-select 
       v-if="is_editing" v-model="editing_data.response_type"

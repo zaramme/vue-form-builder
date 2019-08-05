@@ -2,35 +2,31 @@
 <div>
   <div class="row section">
     <template v-if="isEditing">
+      <i class="el-icon-postcard"></i>
       <h3>
         <el-input v-model="editing_data.title"></el-input>
       </h3>
-      <div class="attribute"></div>
-      <div class="editbox">
-        <el-button icon="el-icon-check" circle @click="save"></el-button>
-        <el-button icon="el-icon-close" circle @click="cancelEdit"></el-button>
-      </div>
     </template>
     <template v-else>
       <i class="el-icon-postcard"></i>
       <h3>{{value.title}}</h3>
-      <div class="attribute"></div>
-      <z-row-editor
-        :is-editing="isEditing"
-        @save="save"
-        @cancelEdit="cancelEdit"
-        @edit="edit"
-        @addNewRow="addNewRow"
-        @moveRowUpward="moveRowUpward"
-        @moveRowDownward="moveRowDownward"
-        @deleteSelf="deleteSelf"
-      >
-        <template v-slot:add-dropdown>  
-          <el-dropdown-item command="question">Add new question</el-dropdown-item>
-          <el-dropdown-item command="section">Add new section inside</el-dropdown-item>
-        </template>
-      </z-row-editor>
     </template>
+    <div class="attribute"></div>
+    <z-row-editor
+      :is-editing="isEditing"
+      @save="save"
+      @cancelEdit="cancelEdit"
+      @edit="edit"
+      @addNewRow="addNewRow"
+      @moveRowUpward="moveRowUpward"
+      @moveRowDownward="moveRowDownward"
+      @deleteSelf="deleteSelf"
+    >
+      <template v-slot:add-dropdown>  
+        <el-dropdown-item command="question">Add new question</el-dropdown-item>
+        <el-dropdown-item command="section">Add new section inside</el-dropdown-item>
+      </template>
+    </z-row-editor>
   </div>
   <div class="section-container">
     <z-form-container v-model="value.items" name="foo" :addable="addable"></z-form-container>

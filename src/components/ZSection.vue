@@ -1,15 +1,27 @@
 <template>
 <div class="zsection">
-<h3>{{value.title}}</h3>
-<z-form-container v-model="value.items" name="foo"></z-form-container>
+  <div class="raw">
+    <template v-if="is_editing">
+      <el-input v-model="editing_data.title"></el-input>
+      <el-button icon="el-icon-check" circle @click="save"></el-button>
+      <el-button icon="el-icon-close" circle @click="cancelEdit"></el-button>
+    </template>
+    <template v-else>
+      <h3>{{value.title}}</h3>
+      <el-button icon="el-icon-edit" @click="edit" circle></el-button>
+    </template>
+  </div>
+<z-form-container v-model="value.items" name="foo" :addable="addable"></z-form-container>
 </div>
 </template>
 
 <script>
 import ZFormContainer from './ZFormContainer'
+import EditableMixin from '@/mixins/EditableMixin'
 
 export default {
   name: 'ZSection',
+  mixins: [EditableMixin],
   props:['value'],
   components:{
     // to avoid curculer refellence, import dinamicly
@@ -17,7 +29,7 @@ export default {
   },
   data () {
     return {
-      msg: ''
+      addable:['section', 'question']
     }
   }
 }

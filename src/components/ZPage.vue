@@ -66,17 +66,20 @@ export default {
       if(command==='page'){
         this.$emit('add',{
           type: 'page',
+          title: 'new page'
         }, this.indexOfRaw)
         return
       }
       if(command==='section'){
         this.addChildRow({
-          type: 'section'
+          type: 'section',
+          title: 'new section'
         })
       }
       if(command==='question'){
         this.addChildRow({
-          type: 'question'
+          type: 'question',
+          title: 'new question'
         })
       }
     }

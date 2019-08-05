@@ -68,7 +68,8 @@ export default {
     addNewRow(){
       this.$emit('add',{
           type: 'question',
-          response_type: 'number'
+          title: 'new question',
+          response_type: 'text'
         },
         this.indexOfRaw
       )

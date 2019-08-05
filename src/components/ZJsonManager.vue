@@ -3,7 +3,7 @@
   <el-button icon="el-icon-download" type="primary" @click="openImportDialog">Import CSV</el-button>
   <el-dialog
     title="Import by CSV"
-    :visible.sync="enableImportDialog"
+    :visible.sync="visibleImportDialog"
     width="60%"
   >
     <span>
@@ -11,18 +11,19 @@
         <el-input 
           :rows="13"
           type="textarea" 
+          placeholder='(paste json here)'
           v-model="inputImportDialog" 
         ></el-input>
     </span>
     <span slot="footer" class="dialog-footer">
-        <el-button @click="enableImportDialog=false" type="danger">Cancel</el-button>
+        <el-button @click="visibleImportDialog=false" type="danger">Cancel</el-button>
         <el-button @click="importJson" type="primary">Import</el-button>
     </span>
   </el-dialog>
   <el-button icon="el-icon-upload2" type="danger" @click="openExportDialog">Export CSV</el-button>
   <el-dialog
     title="Export by CSV"
-    :visible.sync="enableExportDialog"
+    :visible.sync="visibleExportDialog"
     width="60%"
   >
     <span>
@@ -34,7 +35,7 @@
         ></el-input>
     </span>
     <span slot="footer" class="dialog-footer">
-        <el-button @click="enableExportDialog=false">Close</el-button>
+        <el-button @click="visibleExportDialog=false">Close</el-button>
     </span>
   </el-dialog>
 </div>
@@ -47,25 +48,26 @@ export default {
   props:['value'],
   data(){
     return {
-        enableImportDialog: false,
+        visibleImportDialog: false,
         inputImportDialog:'',
-        enableExportDialog: false,
+        visibleExportDialog: false,
         sampleJson: sampleJson
     }
   },
   methods:{
     openImportDialog(){
-      this.enableImportDialog = true
+      this.visibleImportDialog = true
+      this.inputImportDialog = ''
     },
     openExportDialog(){
-    this.enableExportDialog = true
+      this.visibleExportDialog = true
     },
     importJson(){
       try{
         const convertedValue = JSON.parse(this.inputImportDialog)
         this.$emit('input', convertedValue)
         this.$message('loaded json successfully')
-        this.enableImportDialog = false
+        this.visibleImportDialog = false
       } catch(e) {
         this.$message.error('Error: failed to read JSON');
       }

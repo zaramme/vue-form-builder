@@ -1,7 +1,13 @@
 <template>
 <div>
 <template v-for="(entity,index) in value">
-  <component :is="getComponentNameFrom(entity.type)" v-model="value[index]" :key="entity.uuid"></component>
+  <component 
+    :is="getComponentNameFrom(entity.type)" 
+    v-model="value[index]" 
+    :key="entity.uuid"
+    @add="addSiblingRow"
+    :index-of-raw="index"
+  ></component>
 </template>
 </div>
 </template>
@@ -10,13 +16,18 @@
 import ZPage from './ZPage'
 import ZSection from './ZSection'
 import ZQuestion from './ZQuestion'
-import UuidGeneratableMixin from '@/mixins/UuidGeneratableMixin'
+import AddableMixin from '@/mixins/AddableMixin'
 
 export default {
   name: 'ZFormContainer',
-  mixins: [UuidGeneratableMixin],
+  mixins: [AddableMixin],
   components:{ZPage, ZSection, ZQuestion},
-  props: ['value'],
+  props: ['value', 'addable'],
+  data(){
+    return {
+      'add_button_value': null
+    }
+  },
   methods:{
     getComponentNameFrom(type){
       if(type === 'page'){

@@ -16,6 +16,14 @@
     <h2>{{value.title}}</h2>
     <div class="editbox">
       <el-button icon="el-icon-edit" @click="edit" circle></el-button>
+      <el-dropdown @command="addNewRow">
+        <el-button icon="el-icon-plus" circle></el-button>
+        <el-dropdown-menu>
+          <el-dropdown-item command="page">Add new page</el-dropdown-item>
+          <el-dropdown-item command="section">Add new section inside this page</el-dropdown-item>
+          <el-dropdown-item command="question">Add new question inside this page</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </template>
   </div>
@@ -26,15 +34,42 @@
 <script>
 import ZFormContainer from './ZFormContainer'
 import EditableMixin from '@/mixins/EditableMixin'
+import AddableMixin from '@/mixins/AddableMixin'
 
 export default {
   name: 'ZPage',
-  mixins: [EditableMixin],
-  props:['value'],
+  mixins: [
+    EditableMixin,
+    AddableMixin
+  ],
+  props:[
+    'value',
+    'indexOfRaw'
+  ],
   components:{
     // to avoid curculer refellence, import dinamicly
     ZFormContainer: () => import('./ZFormContainer')
   },
+  methods:{
+    addNewRow(command){
+      if(command==='page'){
+        this.$emit('add',{
+          type: 'page',
+        }, this.indexOfRaw)
+        return
+      }
+      if(command==='section'){
+        this.addChildRow({
+          type: 'section'
+        })
+      }
+      if(command==='question'){
+        this.addChildRow({
+          type: 'question'
+        })
+      }
+    }
+  }
 }
 </script>
 

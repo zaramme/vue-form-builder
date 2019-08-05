@@ -14,6 +14,13 @@
       <h3>{{value.title}}</h3>
       <div class="editbox">
         <el-button icon="el-icon-edit" @click="edit" circle></el-button>
+        <el-dropdown @command="addNewRow">
+          <el-button icon="el-icon-plus" circle></el-button>
+          <el-dropdown-menu>
+            <el-dropdown-item command="question">Add new question</el-dropdown-item>
+            <el-dropdown-item command="section">Add new section inside</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
     </template>
   </div>
@@ -24,11 +31,18 @@
 <script>
 import ZFormContainer from './ZFormContainer'
 import EditableMixin from '@/mixins/EditableMixin'
+import AddableMixin from '@/mixins/AddableMixin'
 
 export default {
   name: 'ZSection',
-  mixins: [EditableMixin],
-  props:['value'],
+  mixins: [
+    EditableMixin,
+    AddableMixin
+  ],
+  props:[
+    'value',
+    'indexOfRaw'
+  ],
   components:{
     // to avoid curculer refellence, import dinamicly
     ZFormContainer: () => import('./ZFormContainer')
@@ -36,6 +50,20 @@ export default {
   data () {
     return {
       addable:['section', 'question']
+    }
+  },
+  methods:{
+    addNewRow(command){
+      if(command==='section'){
+        this.addChildRow({
+          type: 'section'
+        })
+      }
+      if(command==='question'){
+        this.addChildRow({
+          type: 'question'
+        })
+      }
     }
   }
 }

@@ -18,19 +18,32 @@
       <el-button icon="el-icon-check" circle @click="save"></el-button>
       <el-button icon="el-icon-close" circle @click="cancelEdit"></el-button>
     </template>
-    <el-button v-else icon="el-icon-edit" circle @click="edit"></el-button>
+    <template v-else>
+      <el-button icon="el-icon-edit" circle @click="edit"></el-button>
+      <el-dropdown @command="addNewRow">
+        <el-button icon="el-icon-plus" circle></el-button>
+        <el-dropdown-menu>
+          <el-dropdown-item command="question">Add new question</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </template>
   </div>
 </div>
 </template>
 
 <script>
 import EditableMixin from '@/mixins/EditableMixin'
+import AddableMixin from '@/mixins/AddableMixin'
 
 export default {
   name: 'ZQuestion',
-  mixins:[EditableMixin],
+  mixins: [
+    EditableMixin,
+    AddableMixin
+  ],
   props:[
-    'value'
+    'value',
+    'indexOfRaw'
   ], 
   data(){
     return {
@@ -40,7 +53,16 @@ export default {
       ]
     }
   },
-  computed:{},
+  methods:{
+    addNewRow(){
+      this.$emit('add',{
+          type: 'question',
+          response_type: 'number'
+        },
+        this.indexOfRaw
+      )
+    }
+  }
 }
 </script>
 

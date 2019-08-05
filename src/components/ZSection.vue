@@ -48,18 +48,12 @@ export default {
   ],
   components:{
     ZRowEditor,
-    // to avoid curculer refellence, import dinamicly
-    ZFormContainer: () => import('./ZFormContainer')
+    ZFormContainer: () => import('./ZFormContainer') // to avoid curculer refellence, import dinamicly
   },
   props:[
     'value',
     'indexOfRaw'
   ],
-  data () {
-    return {
-      addable:['section', 'question']
-    }
-  },
   methods:{
     addNewRow(command){
       if(command==='section'){

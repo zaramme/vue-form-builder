@@ -48,7 +48,7 @@ export default {
     EditableMixin,
     AddableMixin
   ],
-  components:{
+  components: {
     ZRowEditor
   },
   props:[
@@ -65,7 +65,8 @@ export default {
   },
   methods:{
     addNewRow(){
-      this.$emit('add',{
+      this.$emit('add',
+        {
           type: 'question',
           title: 'new question',
           response_type: 'text'

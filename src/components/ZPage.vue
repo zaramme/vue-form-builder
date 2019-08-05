@@ -47,31 +47,30 @@ export default {
     EditableMixin,
     AddableMixin
   ],
+  components:{
+    ZRowEditor,
+    ZFormContainer: () => import('./ZFormContainer') // to avoid curculer refellence, import dinamicly
+  },
   props:[
     'value',
     'indexOfRaw'
   ],
-  components:{
-    ZRowEditor,
-    // to avoid curculer refellence, import dinamicly
-    ZFormContainer: () => import('./ZFormContainer')
-  },
   methods:{
     addNewRow(command){
-      if(command==='page'){
+      if(command === 'page'){
         this.$emit('add',{
           type: 'page',
           title: 'new page'
         }, this.indexOfRaw)
         return
       }
-      if(command==='section'){
+      if(command === 'section'){
         this.addChildRow({
           type: 'section',
           title: 'new section'
         })
       }
-      if(command==='question'){
+      if(command === 'question'){
         this.addChildRow({
           type: 'question',
           title: 'new question'

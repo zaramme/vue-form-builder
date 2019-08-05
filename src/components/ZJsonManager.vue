@@ -1,5 +1,7 @@
 <template>
 <div class="json-manager">
+
+  <!-- json import button and dialog -->
   <el-button icon="el-icon-download" type="primary" @click="openImportDialog">Import CSV</el-button>
   <el-dialog
     title="Import by CSV"
@@ -7,19 +9,21 @@
     width="60%"
   >
     <span>
-        <el-button @click="inputSampleJson" type="success" plain>Load Sample JSON</el-button>
-        <el-input 
-          :rows="13"
-          type="textarea" 
-          placeholder='(paste json here)'
-          v-model="inputImportDialog" 
-        ></el-input>
+      <el-button @click="inputSampleJson" type="success" plain>Load Sample JSON</el-button>
+      <el-input 
+        :rows="13"
+        type="textarea" 
+        placeholder='(paste json here)'
+        v-model="inputImportDialog" 
+      ></el-input>
     </span>
     <span slot="footer" class="dialog-footer">
-        <el-button @click="visibleImportDialog=false" type="danger">Cancel</el-button>
-        <el-button @click="importJson" type="primary">Import</el-button>
+      <el-button @click="visibleImportDialog=false" type="danger">Cancel</el-button>
+      <el-button @click="importJson" type="primary">Import</el-button>
     </span>
   </el-dialog>
+
+  <!-- json export button and dialog -->
   <el-button icon="el-icon-upload2" type="danger" @click="openExportDialog">Export CSV</el-button>
   <el-dialog
     title="Export by CSV"
@@ -27,12 +31,12 @@
     width="60%"
   >
     <span>
-        <el-input 
-          :rows="13"
-          type="textarea" 
-          :value="valueByJson" 
-          readonly
-        ></el-input>
+      <el-input 
+        :rows="13"
+        type="textarea" 
+        :value="valueByJson" 
+        readonly
+      ></el-input>
     </span>
     <span slot="footer" class="dialog-footer">
         <el-button @click="visibleExportDialog=false">Close</el-button>
@@ -64,7 +68,7 @@ export default {
     },
     importJson(){
       try{
-        const convertedValue = JSON.parse(this.inputImportDialog)
+        const convertedValue = JSON.parse(this.inputImportDialog) // TODO: more strict format check and error handling
         this.$emit('input', convertedValue)
         this.$message('loaded json successfully')
         this.visibleImportDialog = false

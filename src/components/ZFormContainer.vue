@@ -24,13 +24,9 @@ export default {
   name: 'ZFormContainer',
   mixins: [AddableMixin],
   components:{ZPage, ZSection, ZQuestion},
-  props: ['value', 'addable'],
-  data(){
-    return {
-      'add_button_value': null
-    }
-  },
+  props: ['value'],
   methods:{
+    // get component name dinamicly from "type" attribute in JSON
     getComponentNameFrom(type){
       if(type === 'page'){
         return 'z-page'
@@ -41,9 +37,9 @@ export default {
       if(type === 'question'){
         return 'z-question'
       }
-      // TODO: erro handling
+      // TODO: error handling
       return 'z-section'
-    }
+    },
   }
 }
 </script>

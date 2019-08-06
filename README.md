@@ -14,7 +14,7 @@ just access https://zaramme.github.io/vue-form-builder/ !
 git clone https://github.com/zaramme/vue-form-builder.git
 
 # install dependencies
-mv vue-form-builder 
+cd vue-form-builder 
 npm install
 
 # serve with hot reload at localhost:8080

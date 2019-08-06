@@ -1,20 +1,13 @@
-// append manipurating row function to component*(e.g. insert/delete/swap rows)
+// append manipurating row function to component(e.g. append/delete/swap rows)
 import UuidGeneratableMixin from '@/mixins/UuidGeneratableMixin'
 export default {
   mixins:[UuidGeneratableMixin],
   methods:{
-    addSiblingRow(content, indexToInsert=0){
-      const newRow = this._createNewRow(content)
-      this.value.splice(indexToInsert+1, 0, newRow)
-    },
-    addChildRow(content, indexToInsert=0){
-      if(!this.value['items']){
-        this.$set(this.value, 'items', [])
-      }
-      const newRow = this._createNewRow(content)
-      this.value.items.splice(0, 0, newRow)
-    },
-    deleteSelf(){
+
+    /*
+      methods to manipirate row itself
+    */
+    deleteMe(){
       // if it does NOT has child item, delete directly
       if(!this.value['items']){
         // delegate delete process to parent component(usually v-form-container)
@@ -34,10 +27,26 @@ export default {
         // do nothing
       })
     },
-    deleteSiblingRow(indexToDelete){
+    moveMeUpward(){
+      // delegate to parent component(usually v-form-container)
+      this.$emit('swap', this.IndexOfRow, this.IndexOfRow-1)
+    },
+    moveMeDownward(){
+      // delegate swap process to parent component(usually v-form-container)
+      this.$emit('swap', this.IndexOfRow, this.IndexOfRow+1)
+    },
+
+    /*
+      methods to manipirate row in form-container
+    */
+    appendRowInContainer(content, indexToInsert=0){
+      const newRow = this._createNewRow(content)
+      this.value.splice(indexToInsert+1, 0, newRow)
+    },
+    deleteRowInContainer(indexToDelete){
       this.value.splice(indexToDelete, 1)
     },
-    swapSiblingRow(indexA, indexB){
+    swapRowsInContainer(indexA, indexB){
       if(!this.value[indexA] || !this.value[indexB]){
         return // it means specified row is on first or last row.
       }
@@ -45,14 +54,22 @@ export default {
       this.$set(this.value, indexA ,this.value[indexB])
       this.$set(this.value, indexB ,tmp)
     },
-    moveRowUpward(){
-      // delegate to parent component(usually v-form-container)
-      this.$emit('swap', this.IndexOfRow, this.IndexOfRow-1)
+
+    /*
+      methods to manipirate row in form-container
+    */
+    appendChildRow(content, indexToInsert=0){
+      if(!this.value['items']){
+        this.$set(this.value, 'items', [])
+      }
+      const newRow = this._createNewRow(content)
+      this.value.items.splice(0, 0, newRow)
     },
-    moveRowDownward(){
-      // delegate swap process to parent component(usually v-form-container)
-      this.$emit('swap', this.IndexOfRow, this.IndexOfRow+1)
-    },
+
+
+    /*
+      private methods
+    */
     _createNewRow(content){
       var newRow = {
         "uuid": this.generateUUID(),

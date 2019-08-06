@@ -25,9 +25,9 @@
     @cancelEdit="cancelEdit"
     @edit="edit"
     @addNewRow="addNewRow"
-    @moveRowUpward="moveRowUpward"
-    @moveRowDownward="moveRowDownward"
-    @deleteSelf="deleteSelf"
+    @moveMeUpward="moveMeUpward"
+    @moveMeDownward="moveMeDownward"
+    @deleteMe="deleteMe"
   >
     <template v-slot:add-dropdown>  
       <el-dropdown-item icon="el-icon-question" command="question">Add Question</el-dropdown-item>

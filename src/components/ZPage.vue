@@ -18,9 +18,9 @@
       @cancelEdit="cancelEdit"
       @edit="edit"
       @addNewRow="addNewRow"
-      @moveRowUpward="moveRowUpward"
-      @moveRowDownward="moveRowDownward"
-      @deleteSelf="deleteSelf"
+      @moveMeUpward="moveMeUpward"
+      @moveMeDownward="moveMeDownward"
+      @deleteMe="deleteMe"
     >
       <template v-slot:add-dropdown>
         <el-dropdown-item icon="el-icon-notebook-1" command="page">Add Page</el-dropdown-item>
@@ -65,13 +65,13 @@ export default {
         return
       }
       if(command === 'section'){
-        this.addChildRow({
+        this.appendChildRow({
           type: 'section',
           title: 'new section'
         })
       }
       if(command === 'question'){
-        this.addChildRow({
+        this.appendChildRow({
           type: 'question',
           title: 'new question'
         })

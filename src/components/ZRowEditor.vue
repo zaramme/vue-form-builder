@@ -12,9 +12,9 @@
           <slot name="add-dropdown"></slot>
         </el-dropdown-menu>
       </el-dropdown>
-      <el-button icon="el-icon-arrow-up" @click="$emit('moveRowUpward')" type="warning" circle></el-button>
-      <el-button icon="el-icon-arrow-down" @click="$emit('moveRowDownward')" type="warning" circle></el-button>
-      <el-button icon="el-icon-delete" @click="$emit('deleteSelf')" type="danger" circle></el-button>
+      <el-button icon="el-icon-arrow-up" @click="$emit('moveMeUpward')" type="warning" circle></el-button>
+      <el-button icon="el-icon-arrow-down" @click="$emit('moveMeDownward')" type="warning" circle></el-button>
+      <el-button icon="el-icon-delete" @click="$emit('deleteMe')" type="danger" circle></el-button>
     </template>
   </div>
 </template>

@@ -5,9 +5,9 @@
     :is="getComponentNameFrom(entity.type)" 
     v-model="value[index]" 
     :key="entity.uuid"
-    @add="addSiblingRow"
-    @delete="deleteSiblingRow"
-    @swap="swapSiblingRow"
+    @add="appendRowInContainer"
+    @delete="deleteRowInContainer"
+    @swap="swapRowsInContainer"
     :index-of-row="index"
   ></component>
 </template>

@@ -18,9 +18,9 @@
       @cancelEdit="cancelEdit"
       @edit="edit"
       @addNewRow="addNewRow"
-      @moveRowUpward="moveRowUpward"
-      @moveRowDownward="moveRowDownward"
-      @deleteSelf="deleteSelf"
+      @moveMeUpward="moveMeUpward"
+      @moveMeDownward="moveMeDownward"
+      @deleteMe="deleteMe"
     >
       <template v-slot:add-dropdown>  
         <el-dropdown-item icon="el-icon-question" command="question">Add Question inside this section</el-dropdown-item>
@@ -57,13 +57,13 @@ export default {
   methods:{
     addNewRow(command){
       if(command==='section'){
-        this.addChildRow({
+        this.appendChildRow({
           type: 'section',
           title: 'new section'
         })
       }
       if(command==='question'){
-        this.addChildRow({
+        this.appendChildRow({
           type: 'question',
           title: 'new question',
           response_type: 'text'

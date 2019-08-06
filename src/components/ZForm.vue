@@ -22,7 +22,7 @@ export default {
   components:{ZFormContainer},
   methods:{
     addNewRow(){
-      this.addChildRow({
+      this.appendChildRow({
         type: 'page',
         title: 'new page'
       })

@@ -65,11 +65,13 @@ export default {
     },
     openExportDialog(){
       this.visibleExportDialog = true
+      this.$store.commit('saveVForm', this.value)
     },
     importJson(){
       try{
         const convertedValue = JSON.parse(this.inputImportDialog) // TODO: more strict format check and error handling
-        this.$emit('input', convertedValue)
+        this.$store.commit('saveVForm', convertedValue)
+        this.$emit('input', this.$store.state.v_form)
         this.$message('loaded json successfully')
         this.visibleImportDialog = false
       } catch(e) {

@@ -8,7 +8,7 @@
     @add="addSiblingRow"
     @delete="deleteSiblingRow"
     @swap="swapSiblingRow"
-    :index-of-raw="index"
+    :index-of-row="index"
   ></component>
 </template>
 </div>

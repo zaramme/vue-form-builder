@@ -53,7 +53,7 @@ export default {
   },
   props:[
     'value',
-    'indexOfRaw'
+    'IndexOfRow'
   ], 
   data(){
     return {
@@ -71,7 +71,7 @@ export default {
           title: 'new question',
           response_type: 'text'
         },
-        this.indexOfRaw
+        this.IndexOfRow
       )
     }
   },

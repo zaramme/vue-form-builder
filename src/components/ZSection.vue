@@ -52,7 +52,7 @@ export default {
   },
   props:[
     'value',
-    'indexOfRaw'
+    'IndexOfRow'
   ],
   methods:{
     addNewRow(command){

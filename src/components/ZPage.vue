@@ -53,7 +53,7 @@ export default {
   },
   props:[
     'value',
-    'indexOfRaw'
+    'IndexOfRow'
   ],
   methods:{
     addNewRow(command){
@@ -61,7 +61,7 @@ export default {
         this.$emit('add',{
           type: 'page',
           title: 'new page'
-        }, this.indexOfRaw)
+        }, this.IndexOfRow)
         return
       }
       if(command === 'section'){

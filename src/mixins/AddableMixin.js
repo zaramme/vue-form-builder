@@ -1,23 +1,24 @@
+// append manupurating-row function to like insert/delete/swap
 import UuidGeneratableMixin from '@/mixins/UuidGeneratableMixin'
 export default {
   mixins:[UuidGeneratableMixin],
   methods:{
     addSiblingRow(content, indexToInsert=0){
-      const newRaw = this._createNewRaw(content)
-      this.value.splice(indexToInsert+1, 0, newRaw)
+      const newRow = this._createNewRow(content)
+      this.value.splice(indexToInsert+1, 0, newRow)
     },
     addChildRow(content, indexToInsert=0){
       if(!this.value['items']){
         this.$set(this.value, 'items', [])
       }
-      const newRaw = this._createNewRaw(content)
-      this.value.items.splice(0, 0, newRaw)
+      const newRow = this._createNewRow(content)
+      this.value.items.splice(0, 0, newRow)
     },
     deleteSelf(){
       // if it does NOT has child item, delete directly
       if(!this.value['items']){
         // deligate to parent component(usually v-form-container)
-        this.$emit('delete', this.indexOfRaw)
+        this.$emit('delete', this.IndexOfRow)
         return
       }
       // if if has child item, confirm by dialog 
@@ -27,7 +28,7 @@ export default {
         type: 'warning'
       }).then(() => {
         // deligate to parent component(usually v-form-container)
-        this.$emit('delete', this.indexOfRaw)
+        this.$emit('delete', this.IndexOfRow)
         return
       }).catch(() => {
         // nothing to do
@@ -45,20 +46,20 @@ export default {
       this.$set(this.value, indexB ,tmp)
     },
     moveRowUpward(){
-      this.$emit('swap', this.indexOfRaw, this.indexOfRaw-1)
+      this.$emit('swap', this.IndexOfRow, this.IndexOfRow-1)
     },
     moveRowDownward(){
-      this.$emit('swap', this.indexOfRaw, this.indexOfRaw+1)
+      this.$emit('swap', this.IndexOfRow, this.IndexOfRow+1)
     },
-    _createNewRaw(content){
-      var newRaw = {
+    _createNewRow(content){
+      var newRow = {
         "uuid": this.generateUUID(),
         "title": "new object",
       }
       for(let key in content){
-        newRaw[key] = content[key]
+        newRow[key] = content[key]
       }
-      return newRaw
+      return newRow
     }
   }
 }

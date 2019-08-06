@@ -37,6 +37,12 @@
         :value="valueByJson" 
         readonly
       ></el-input>
+      <el-button
+        type="danger"
+        v-clipboard:copy="valueByJson"
+        v-clipboard:success="onCopy"
+        plain
+      >Copy to clipboard</el-button>
     </span>
     <span slot="footer" class="dialog-footer">
         <el-button @click="visibleExportDialog=false">Close</el-button>
@@ -80,7 +86,10 @@ export default {
     },
     inputSampleJson(){
         this.inputImportDialog = JSON.stringify(this.sampleJson, null, 4)
-    }
+    },
+    onCopy(){
+      this.$message('copied clipboard!!')
+   }
   },
   computed:{
     valueByJson(){

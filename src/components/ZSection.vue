@@ -29,7 +29,7 @@
     </z-row-editor>
   </div>
   <div class="section-container">
-    <z-form-container v-model="value.items" name="foo" :addable="addable"></z-form-container>
+    <z-form-container v-model="value.items"></z-form-container>
   </div>
 </div>
 </template>
